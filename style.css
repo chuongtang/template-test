@@ -76,6 +76,32 @@ button:active {
 .fa-twitter {
     font-size: 1.5rem;
 }
+/* Loader -loading animation */
+.lds-dual-ring {
+    display: inline-flexbox;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: rgb(126, 53, 53) transparent rgb(167, 74, 74) transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 /* Media Query: Table or smaller */
 @media screen and (max-width: 1000px){
     .quote-container{

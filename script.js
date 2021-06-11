@@ -6,14 +6,14 @@ const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('lds-dual-ring');
 
 // Show Loading animation //
-function showLoadingSpinner(){
+function showLoadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
 // Hide loading animation and show quoteContainer //
-function removeLoadingSpinner(){
-    if(!loader.hidden){
+function removeLoadingSpinner() {
+    if (!loader.hidden) {
         quoteContainer.hidden = false;
         loader.hidden = true;
     }
@@ -21,17 +21,17 @@ function removeLoadingSpinner(){
 // Get quote from API //
 async function getQuote() {
     showLoadingSpinner();
-    const proxyUrl = 'https://intense-harbor-07676.herokuapp.com/'
+    const proxyUrl = 'https://corsproxyfortlc.herokuapp.com/'
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
     try {
         const response = await fetch(proxyUrl + apiUrl);
         const data = await response.json();
         // If author is blank -> unknown
-        (data.quoteAuthor === '')? authorText.innerText = 'Unknown' : authorText.innerText =data.quoteAuthor;
+        (data.quoteAuthor === '') ? authorText.innerText = 'Unknown' : authorText.innerText = data.quoteAuthor;
         // reduce font size for long quotes
-        if (data.quoteText.length > 120 ){
+        if (data.quoteText.length > 120) {
             quoteText.classList.add('long-quote');
-        }else{
+        } else {
             quoteText.classList.remove('long-quote');
         }
         quoteText.innerText = data.quoteText;
@@ -40,11 +40,11 @@ async function getQuote() {
 
     } catch (error) {
         getQuote();
-        
+
     }
 }
 // Tweeter function
-function tweetQuote (){
+function tweetQuote() {
     const quote = quoteText.innerText;
     const author = authorText.innerText;
     const twitterUrl = `https://twitter.com/intent/tweet?text=${quote} -- ${author}`
